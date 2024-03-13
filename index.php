@@ -9,93 +9,340 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>To Do List</title>
 </head>
-<body class="font-serif relative">
+<body class="font-sans relative">
 
-<h1 class="satisfy-regular flex justify-center mt-20 mb-10 text-5xl text-white">To Do or Not To Do</h1>
+    <h1 class="satisfy-regular flex justify-center mt-20 mb-10 text-5xl text-white">To Do or Not To Do</h1>
 
-<!-- To Do List -->
-<div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	<div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-        <div class="mb-4">
+    <!-- TO DO LIST -->
+    <div id="modalToDoList" class="h-100 w-full flex items-center justify-center font-sans hidden">
+        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+            <div class="mb-4">
 
-            <!-- conteneur création tâches -->
-            <div class="flex flex-col">
+                <!-- CONTENEUR CREATION TACHES -->
+                <div class="flex flex-col">
 
-                <!-- titre tâches -->
-                <input name="titre" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Titre de votre tâche">
+                    <!-- titre tâches -->
+                    <input id="Titre_Task" name="Titre_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Titre de votre tâche">
 
-                <!-- description -->
-                <input name="description" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker mt-5" placeholder="Description">
+                    <!-- description -->
+                    <input id="Description_Task" name="Description_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker mt-5" placeholder="Description">
 
-                <div class="flex">
+                    <div class="flex">
 
-                    <!-- conteneur date et priorités -->
-                    <div class="w-1/2 flex-row items-center justify-center bg-teal-lightest font-sans p-2">
-                        <!-- date -->
-                        <input name="date" type="date" class="flex shadow appearance-none border rounded w-full py-2 mr-4 mt-5 text-grey-darker sm:text-sm">
+                        <!-- conteneur date et priorités -->
+                        <div class="w-1/2 flex-row items-center justify-center bg-teal-lightest font-sans p-2">
+                            <!-- date -->
+                            <input id="Date_Task" name="Date_Task" type="date" class="flex shadow appearance-none border rounded w-full py-2 mr-4 mt-5 text-grey-darker sm:text-sm">
 
-                        <!-- priorités -->
-                        <select id="priorite" name="id_priorite" type="text" required class="flex capitalize block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-5">
-                        </select>
+                            <!-- priorités -->
+                            <select id="Id_Priority" name="Id_Priority" type="text" required class="flex capitalize block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 mt-5">
+                            </select>
+                        </div>
+                        
+                        <!-- catégories -->
+                        <div class="flex-row w-1/2 pt-6 pl-5" id="categories">
+                            
+                            <div class="flex items-center">
+                                <input id="Famille_Category" name="Famille_Category" value="famille" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <label for="Famille_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Famille</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="Amis_Category" name="Amis_Category" value="amis" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <label for="Amis_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Amis</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="Travail_Category" name="Travail_Category" value="travail" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <label for="Travail_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Travail</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="Personnel_Category" name="Personnel_Category" value="personnel" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <label for="Personnel_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Personnel</label>
+                            </div>
+                        </div>
+
                     </div>
                     
-                    <!-- catégories -->
-                    <div class="flex-row w-1/2 pt-6 pl-5" id="categories">
-                        
-                        <div class="flex items-center">
-                            <input id="famille_category" name="famille" value="famille" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                            <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500">Famille</label>
+                </div>
+
+                <!-- bouton ajouter -->
+                <button id ="btnAjouterTaches" class="flex-no-shrink p-2 mt-8 border-2 rounded text-teal border-teal hover:text-purple-500 hover:bg-teal">Ajouter</button>
+            </div>
+        </div>
+        
+
+        <!-- CONTENEUR TACHES -->
+        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg hidden">
+            <div>
+                <div class="flex mb-4 items-center">
+                    <p class="w-full text-grey-darkest">Add another component to Tailwind Components</p>
+                    <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">C'est fait !</button>
+                    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Supprimer</button>
+                </div>
+                <div class="flex mb-4 items-center">
+                    <p class="w-full line-through text-green">Submit Todo App Component to Tailwind Components</p>
+                    <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</button>
+                    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- MODAL CONNEXION -->
+    <div id="modalConnexion" class="modalConnexion absolute top-0 w-screen h-screen z-20 ">
+
+            <div class="flex  flex-col justify-center px-6 py-12 lg:px-8  w-1/2 mx-auto ">
+                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                    
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight font-extralight text-white">Connexion</h2>
+                </div>
+
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="space-y-3">
+                        <div>
+                            <label for="Email_User" class="block text-sm font-medium leading-6 text-white">Email :</label>
+                            <div class="mt-2">
+                                <input id="Email_User" name="Email_User" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            </div>
                         </div>
-                        <div class="flex items-center">
-                            <input id="amis_category" name="amis" value="amis" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                            <label for="amis_category" class="ml-3 min-w-0 flex-1 text-gray-500">Amis</label>
+
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <label for="Mdp_User" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
+                               
+                            </div>
+                            <div class="mt-2">
+                                <input id="Mdp_User" name="Mdp_User" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                            </div>
                         </div>
-                        <div class="flex items-center">
-                            <input id="travail_category" name="travail" value="travail" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                            <label for="travail_category" class="ml-3 min-w-0 flex-1 text-gray-500">Travail</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="personnel_category" name="personnel" value="personnel" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                            <label for="personnel_category" class="ml-3 min-w-0 flex-1 text-gray-500">Personnel</label>
+
+                        <div>
+                            <button id="btnConnexion" type="submit" onclick="handleLogin()"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Se Connecter</button>
+                            
                         </div>
                     </div>
 
+                    <p class="mt-10 text-center text-sm text-white hover:font-bold">
+                    <a href="#">Pas encore membre ? S'incrire ici</a>
+                    </p>
                 </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <!-- MODAL INSCRIPTION -->
+    <div id="modalInscription" class="modalInscription absolute top-0  w-screen h-screen z-20 hidden">
+
+        <div class="flex  flex-col justify-center px-6 py-12 lg:px-8  w-1/2 mx-auto ">
+                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight font-extralight text-white">Inscription</h2>
+                </div>
+
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="space-y-3">
+
+                        <div>
+                            <label for="Prenom_User_Inscription" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
+                            <div class="mt-2">
+                                <input id="Prenom_User_Inscription" name="Prenom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="Nom_User_Inscription" class="block text-sm font-medium leading-6 text-white ">Nom :</label>
+                            <div class="mt-2">
+                                <input id="Nom_User_Inscription" name="Nom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <label for="Email_User_Inscription" class="block text-sm font-medium leading-6 text-white">Email :</label>
+                            <div class="mt-2">
+                                <input id="Email_User_Inscription" name="Email_User_Inscription" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <label for="Mdp_User_Inscription" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
+                                <div class="text-sm">
+                                    <a href="#" class="font-semibold text-fuchsia-600 hover:text-fuchsia-500"></a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <input id="Mdp_User_Inscription" name="Mdp_User_Inscription" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <label for="Mdp_User_Inscription2" class="block text-sm font-medium leading-6 mt-2 text-white">Veuillez resaisir le mot de passe :</label>
+                                <div class="text-sm">
+                                    <a href="#" class="font-semibold text-fuchsia-600 hover:text-fuchsia-500"></a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <input id="Mdp_User_Inscription2" name="Mdp_User_Inscription2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                            </div>
+                        </div>
+
+                        <div>
+                            <button id="btnValidationInscription" type="submit" onclick="handleLogin()"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">S'inscrire</button>
+                        </div>
+                    </div>
+
                 
+                </p>
             </div>
-
-                <!-- bouton ajouter -->
-            <button class="flex-no-shrink p-2 mt-8 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal">Ajouter</button>
         </div>
+
+          
     </div>
+
+
+    <!-- MODAL MES INFORMATIONS -->
+    <div id="modalInformations" class="modalInformations absolute top-0 w-screen h-screen z-20 hidden">
+
+        <div class="flex  flex-col justify-center px-6 py-12 lg:px-8  w-1/2 mx-auto ">
+                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                    
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight font-extralight text-white">Mes Informations</h2>
+                </div>
+
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="space-y-3">
+
+                        <div>
+                            <label for="Prenom_User_Informations" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
+                            <div class="mt-2">
+                                
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="Nom_User_Informations" class="block text-sm font-medium leading-6 text-white">Nom :</label>
+                            <div class="mt-2">
+                                
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <label for="Email_User_Informations" class="block text-sm font-medium leading-6 text-white">Email :</label>
+                            <div class="mt-2">
+                                
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <label for="Mdp_User_Informations" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
+                                <div class="text-sm">
+                                    <a href="#" class="font-semibold text-fuchsia-600 hover:text-fuchsia-500"></a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <label for="Mdp_User_Informations2" class="block text-sm font-medium leading-6 text-white">Veuillez resaisir le mot de passe :</label>
+                                <div class="text-sm">
+                                    <a href="#" class="font-semibold text-fuchsia-600 hover:text-fuchsia-500"></a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                
+                            </div>
+                        </div>
+
+                        <div>
+                            <button id="btnModifierInformations" type="submit"   class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Modifier mes informations</button>
+                            <button id="btnSupprimerInformations" type="submit"   class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Supprimer mon compte</button>
+                        </div>
+                    </div>
+
+                
+                </p>
+            </div>
+        </div>
+
+          
+    </div>
+
+    <!-- MODAL MODIFIER MES INFORMATIONS -->
+    <div id="modalModifierInformations" class="modalModifierInformations absolute top-0 w-screen h-screen z-20 hidden">
+
+        <div class="flex flex-col justify-center px-6 py-12 lg:px-8  w-1/2 mx-auto ">
+                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                    
+                    <h2 class="mt-10 text-center text-2xl leading-9 tracking-tight text-white font-extralight">Mes Informations</h2>
+                </div>
+
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="space-y-3">
+
+                        <div>
+                            <label for="Prenom_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
+                            <div class="mt-2">
+                            <input id="Prenom_User_Modifier_Informations" name="Prenom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="Nom_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Nom :</label>
+                            <div class="mt-2">
+                            <input id="Nom_User_Modifier_Informations" name="Nom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
     
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <label for="Email_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Email :</label>
+                            <div class="mt-2">
+                            <input id="Email_User_Modifier_Informations" name="Email_User_Modifier_Informations" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            </div>
+                        </div>
 
-    <!-- conteneur tâches -->
-    <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-        <div>
-            <div class="flex mb-4 items-center">
-                <p class="w-full text-grey-darkest">Add another component to Tailwind Components</p>
-                <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">C'est fait !</button>
-                <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Supprimer</button>
-            </div>
-          	<div class="flex mb-4 items-center">
-                <p class="w-full line-through text-green">Submit Todo App Component to Tailwind Components</p>
-                <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</button>
-                <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+                        <div>
+                            
+                                <label for="Mdp_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
+                                <div class="mt-2">
+                                    <input id="Mdp_User_Modifier_Informations" name="Mdp_User_Modifier_Informations" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                </div>
+                            
+                            
+                            
+                            
+                                <label for="Mdp_User_Modifier_Informations2" class="block text-sm font-medium leading-6 text-white mt-2">Veuillez resaisir le mot de passe :</label>
+                                <div class="mt-2">
+                                    <input id="Mdp_User_Modifier_Informations2" name="Mdp_User_Modifier_Informations2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                </div>
+                            
+                            
+                        </div>
+
+                        <div>
+                            <button id="btnValiderModificationInformations" type="submit"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 mt-2">Modifier mes informations</button>
+                        </div>
+                    </div>
+
+                
+                </p>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- modal connexion -->
-<div></div>
-<!-- modal inscription -->
-<div></div>
-<!-- modal mes informations -->
-<div></div>
+          
+    </div>
+
+</div>
 
 
     
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="./assets/script.js"></script>
 </html>
