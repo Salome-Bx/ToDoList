@@ -10,8 +10,13 @@
     <title>To Do List</title>
 </head>
 <body class="font-sans relative">
+    <header class="header">
 
     <h1 class="satisfy-regular flex justify-center mt-20 mb-10 text-5xl text-white">To Do or Not To Do</h1>
+
+    <!-- CONNEXION -->
+        <button id="btnConnexionHeader" type="submit" class=" flex w-auto  justify-right z-50 rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 hidden">Mon compte</button>
+    </header>
 
     <!-- TO DO LIST -->
     <div id="modalToDoList" class="h-100 w-full flex items-center justify-center font-sans hidden">
@@ -40,7 +45,7 @@
                         </div>
                         
                         <!-- catégories -->
-                        <div class="flex-row w-1/2 pt-6 pl-5" id="categories">
+                        <div class="flex-row w-1/2 pt-6 pl-5" id="Category">
                             
                             <div class="flex items-center">
                                 <input id="Famille_Category" name="Famille_Category" value="famille" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
@@ -71,7 +76,7 @@
         
 
         <!-- CONTENEUR TACHES -->
-        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg hidden">
+        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg ">
             <div>
                 <div class="flex mb-4 items-center">
                     <p class="w-full text-grey-darkest">Add another component to Tailwind Components</p>
@@ -89,9 +94,9 @@
 
     
     <!-- MODAL CONNEXION -->
-    <div id="modalConnexion" class="modalConnexion absolute top-0 w-screen h-screen z-20 ">
+    <div id="modalConnexion" class="modalConnexion h-100 w-full absolute w-screen h-screen z-20  ">
 
-            <div class="flex  flex-col justify-center px-6 py-12 lg:px-8  w-1/2 mx-auto ">
+            <div class="flex flex-col justify-center px-6 lg:px-8 w-1/2 mx-auto ">
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                     
                     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight font-extralight text-white">Connexion</h2>
@@ -100,30 +105,30 @@
                 <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <div class="space-y-3">
                         <div>
-                            <label for="Email_User" class="block text-sm font-medium leading-6 text-white">Email :</label>
+                            <label for="Email_User_Connexion" class="block text-sm font-medium leading-6 text-white">Email :</label>
                             <div class="mt-2">
-                                <input id="Email_User" name="Email_User" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                                <input id="Email_User_Connexion" name="Email_User_Connexion" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                             </div>
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between">
-                                <label for="Mdp_User" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
+                                <label for="Mdp_User_Connexion" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
                                
                             </div>
                             <div class="mt-2">
-                                <input id="Mdp_User" name="Mdp_User" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                <input id="Mdp_User_Connexion" name="Mdp_User_Connexion" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                             </div>
                         </div>
 
                         <div>
-                            <button id="btnConnexion" type="submit" onclick="handleLogin()"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Se Connecter</button>
+                            <button id="btnConnexion" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Se Connecter</button>
                             
                         </div>
                     </div>
 
-                    <p class="mt-10 text-center text-sm text-white hover:font-bold">
-                    <a href="#">Pas encore membre ? S'incrire ici</a>
+                    <p class="mt-10 text-center text-sm text-white">Pas encore membre ? </p>
+                    <button id="btnCreerCompte" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600" > Créer un compte </button>
                     </p>
                 </div>
             </div>
@@ -150,23 +155,25 @@
                         <div>
                             <label for="Prenom_User_Inscription" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
                             <div class="mt-2">
-                                <input id="Prenom_User_Inscription" name="Prenom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                                <input id="Prenom_User_Inscription" name="Prenom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                             </div>
                         </div>
 
                         <div>
                             <label for="Nom_User_Inscription" class="block text-sm font-medium leading-6 text-white ">Nom :</label>
                             <div class="mt-2">
-                                <input id="Nom_User_Inscription" name="Nom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                                <input id="Nom_User_Inscription" name="Nom_User_Inscription" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                             </div>
                         </div>
                     
                         <div>
                             <label for="Email_User_Inscription" class="block text-sm font-medium leading-6 text-white">Email :</label>
                             <div class="mt-2">
-                                <input id="Email_User_Inscription" name="Email_User_Inscription" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                                <input id="Email_User_Inscription" name="Email_User_Inscription" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                             </div>
                         </div>
+
+                        
 
                         <div>
                             <div class="flex items-center justify-between">
@@ -176,17 +183,17 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <input id="Mdp_User_Inscription" name="Mdp_User_Inscription" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                <input id="Mdp_User_Inscription" name="Mdp_User_Inscription" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                             </div>
                             
                             <div class="flex items-center justify-between">
-                                <label for="Mdp_User_Inscription2" class="block text-sm font-medium leading-6 mt-2 text-white">Veuillez resaisir le mot de passe :</label>
+                                <label for="Mdp_User_Inscription2" class="block text-sm font-medium leading-6 mt-2 text-white">Veuillez ressaisir le mot de passe :</label>
                                 <div class="text-sm">
                                     <a href="#" class="font-semibold text-fuchsia-600 hover:text-fuchsia-500"></a>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <input id="Mdp_User_Inscription2" name="Mdp_User_Inscription2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                <input id="Mdp_User_Inscription2" name="Mdp_User_Inscription2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                             </div>
                         </div>
 
@@ -217,14 +224,14 @@
                     <div class="space-y-3">
 
                         <div>
-                            <label for="Prenom_User_Informations" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
+                            <label id="Prenom_User_Informations" for="Prenom_User_Informations" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
                             <div class="mt-2">
                                 
                             </div>
                         </div>
 
                         <div>
-                            <label for="Nom_User_Informations" class="block text-sm font-medium leading-6 text-white">Nom :</label>
+                            <label id="Nom_User_Informations" for="Nom_User_Informations" class="block text-sm font-medium leading-6 text-white">Nom :</label>
                             <div class="mt-2">
                                 
                             </div>
@@ -288,14 +295,14 @@
                         <div>
                             <label for="Prenom_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Prénom :</label>
                             <div class="mt-2">
-                            <input id="Prenom_User_Modifier_Informations" name="Prenom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
+                            <input id="Prenom_User_Modifier_Informations" name="Prenom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
                             </div>
                         </div>
 
                         <div>
                             <label for="Nom_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Nom :</label>
                             <div class="mt-2">
-                            <input id="Nom_User_Modifier_Informations" name="Nom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
+                            <input id="Nom_User_Modifier_Informations" name="Nom_User_Modifier_Informations" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 ">   
     
                             </div>
                         </div>
@@ -303,7 +310,7 @@
                         <div>
                             <label for="Email_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Email :</label>
                             <div class="mt-2">
-                            <input id="Email_User_Modifier_Informations" name="Email_User_Modifier_Informations" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            <input id="Email_User_Modifier_Informations" name="Email_User_Modifier_Informations" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                             </div>
                         </div>
 
@@ -311,7 +318,7 @@
                             
                                 <label for="Mdp_User_Modifier_Informations" class="block text-sm font-medium leading-6 text-white">Mot de passe :</label>
                                 <div class="mt-2">
-                                    <input id="Mdp_User_Modifier_Informations" name="Mdp_User_Modifier_Informations" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                    <input id="Mdp_User_Modifier_Informations" name="Mdp_User_Modifier_Informations" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                                 </div>
                             
                             
@@ -319,14 +326,14 @@
                             
                                 <label for="Mdp_User_Modifier_Informations2" class="block text-sm font-medium leading-6 text-white mt-2">Veuillez resaisir le mot de passe :</label>
                                 <div class="mt-2">
-                                    <input id="Mdp_User_Modifier_Informations2" name="Mdp_User_Modifier_Informations2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                                    <input id="Mdp_User_Modifier_Informations2" name="Mdp_User_Modifier_Informations2" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                                 </div>
                             
                             
                         </div>
 
                         <div>
-                            <button id="btnValiderModificationInformations" type="submit"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 mt-2">Modifier mes informations</button>
+                            <button id="btnValiderModificationInformations" type="submit"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 mt-2">Valider mes informations</button>
                         </div>
                     </div>
 
@@ -345,4 +352,5 @@
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="./assets/script.js"></script>
+<script src="./assets/traitement.js"></script>
 </html>
