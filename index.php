@@ -10,12 +10,13 @@
     <title>To Do List</title>
 </head>
 <body class="font-sans relative">
+    <!-- HEADER -->
     <header class="header">
 
     <h1 class="satisfy-regular flex justify-center mt-20 mb-10 text-5xl text-white">To Do or Not To Do</h1>
 
-    <!-- CONNEXION -->
-        <button id="btnConnexionHeader" type="submit" class=" flex w-auto  justify-right z-50 rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 hidden">Mon compte</button>
+    <!-- btn mon compte -->
+        <button id="btnCompteHeader" onclick="blocAAfficherOuCacher(modalToDoList,modalInformations)" type="submit" class=" flex w-auto  justify-right z-50 rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 hidden">Mon compte</button>
     </header>
 
     <!-- TO DO LIST -->
@@ -70,7 +71,7 @@
                 </div>
 
                 <!-- bouton ajouter -->
-                <button id ="btnAjouterTaches" class="flex-no-shrink p-2 mt-8 border-2 rounded text-teal border-teal hover:text-purple-500 hover:bg-teal">Ajouter</button>
+                <button id ="btnAjouterTaches"  class="flex-no-shrink p-2 mt-8 border-2 rounded text-teal border-teal hover:text-purple-500 hover:bg-teal">Ajouter</button>
             </div>
         </div>
         
@@ -122,13 +123,13 @@
                         </div>
 
                         <div>
-                            <button id="btnConnexion" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Se Connecter</button>
+                            <button id="btnConnexion" type="submit"  onclick="handleLoginConnexion()" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Se Connecter</button>
                             
                         </div>
                     </div>
 
                     <p class="mt-10 text-center text-sm text-white">Pas encore membre ? </p>
-                    <button id="btnCreerCompte" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600" > Créer un compte </button>
+                    <button id="btnCreerCompte" type="submit" onclick="blocAAfficherOuCacher(modalConnexion, modalInscription)" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600" > Créer un compte </button>
                     </p>
                 </div>
             </div>
@@ -198,7 +199,7 @@
                         </div>
 
                         <div>
-                            <button id="btnValidationInscription" type="submit" onclick="handleLogin()"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">S'inscrire</button>
+                            <button id="btnValidationInscription" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">S'inscrire</button>
                         </div>
                     </div>
 
@@ -267,8 +268,8 @@
                         </div>
 
                         <div>
-                            <button id="btnModifierInformations" type="submit"   class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Modifier mes informations</button>
-                            <button id="btnSupprimerInformations" type="submit"   class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Supprimer mon compte</button>
+                            <button id="btnModifierInformations" type="submit" onclick="blocAAfficherOuCacher(modalInformations,modalModifierInformations)"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Modifier mes informations</button>
+                            <button id="btnSupprimerInformations" type="submit"  onclick="blocAAfficherOuCacher(modalInformations,modalConnexion)" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">Supprimer mon compte</button>
                         </div>
                     </div>
 
@@ -333,7 +334,7 @@
                         </div>
 
                         <div>
-                            <button id="btnValiderModificationInformations" type="submit"  class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 mt-2">Valider mes informations</button>
+                            <button id="btnValiderModificationInformations" type="submit" onclick="blocAAfficherOuCacher(modalModifierInformations,modalToDoList)" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 mt-2">Valider mes informations</button>
                         </div>
                     </div>
 

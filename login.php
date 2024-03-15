@@ -6,7 +6,11 @@ use DbConnexion\DbConnexion;
 use User\User;
 use UserManager\UserManager;
 
+
+
 if (isset($_POST)) {
+
+    
     $data = file_get_contents("php://input");
     $user = (json_decode($data, true));
 
@@ -14,7 +18,10 @@ if (isset($_POST)) {
     $dbConnexion = new DbConnexion();
     $userManager = new UserManager($dbConnexion);
 
-    if ($userManager->login($user["email_user"], $user["mdp_user"])) {
+
+var_dump($user["email"], $user["password"]);
+    if ($userManager->login($user["email"], $user["password"])) {
+       
         echo "success";
     }else{
         echo"didn't work";

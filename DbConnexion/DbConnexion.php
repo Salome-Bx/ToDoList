@@ -5,9 +5,9 @@ namespace DbConnexion;
 class DbConnexion // classe qui permet de se connecter à la BDD
 {
 	private $host   = "localhost";
-	private $login  = "todolist";
-	private $pass   = "todolist";
-	private $bdd    = "todolist";
+	private $login  = "todolist2";
+	private $pass   = "todolist2";
+	private $bdd    = "todolist2";
 	private $pdo;
 
 	function __construct()
