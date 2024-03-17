@@ -16,16 +16,16 @@
     <h1 class="satisfy-regular flex justify-center mt-20 mb-10 text-5xl text-white">To Do or Not To Do</h1>
 
     <!-- btn mon compte -->
-        <button id="btnCompteHeader" onclick="blocAAfficherOuCacher(modalToDoList,modalInformations)" type="submit" class=" flex w-auto  justify-right z-50 rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 hidden">Mon compte</button>
+        <button id="btnCompteHeader" onclick="blocAAfficherOuCacher(modalToDoList,modalInformations)" type="submit" class=" flex w-auto  justify-end z-50 rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 hidden">Mon compte</button>
     </header>
 
     <!-- TO DO LIST -->
-    <div id="modalToDoList" class="h-100 w-full flex items-center justify-center font-sans hidden">
+    <div id="modalToDoList" class="h-100 w-full flex flex-wrap items-center justify-center font-sans hidden">
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-            <div class="mb-4">
+            <div class="mb-4 flex w-full flex-col justify-center items-center">
 
                 <!-- CONTENEUR CREATION TACHES -->
-                <div class="flex flex-col">
+                <div class="flex flex-col w-full">
 
                     <!-- titre tâches -->
                     <input id="Titre_Task" name="Titre_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Titre de votre tâche">
@@ -71,26 +71,36 @@
                 </div>
 
                 <!-- bouton ajouter -->
-                <button id ="btnAjouterTaches"  class="flex-no-shrink p-2 mt-8 border-2 rounded text-teal border-teal hover:text-purple-500 hover:bg-teal">Ajouter</button>
+                <button id ="btnAjouterTaches"  class="flex-no-shrink w-fit p-2 mt-8 border-2 rounded hover:text-purple-500">Ajouter</button>
             </div>
         </div>
         
 
         <!-- CONTENEUR TACHES -->
-        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg ">
+        
             <div>
-                <div class="flex mb-4 items-center">
-                    <p class="w-full text-grey-darkest">Add another component to Tailwind Components</p>
-                    <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">C'est fait !</button>
-                    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Supprimer</button>
+                <div class="conteneurTache flex-col bg-white rounded shadow m-4 w-full lg:w-3/4 lg:max-w-lg flex mb-4">
+                    <div class="bandeauCouleurPriority w-full bg-red-600 px-1 min-h-fit text-white top-0 flex justify-end">
+                        <p class="w-fit text-sm align-middle">Catégorie</p>
+                        <button class="flex-no-shrink p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer "><i class="fa-solid fa-pencil"></i></button>
+                        <button class="flex-no-shrink p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                    <div class="conteneurTexteTache p-3">
+                        <p class="dateTache">Date</p>
+                        <p class="titreTache w-full text-lg text-grey-darkest">RDV médecin</p>
+                        <p class="descriptionTache w-full text-sm text-grey-darkest">Rappel de vaccin, prendre carnet de vaccination</p>                                      
+                        <div class="btns flex justify-end p-1 mt-2">
+                            <button class="flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs">Terminé !</button>
+                            <button class="flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs">A faire</button>
+                        </div>
+                    </div>
+                    
+                    
+                    
                 </div>
-                <div class="flex mb-4 items-center">
-                    <p class="w-full line-through text-green">Submit Todo App Component to Tailwind Components</p>
-                    <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</button>
-                    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
-                </div>
+                
             </div>
-        </div>
+        
     </div>
 
     
@@ -352,6 +362,8 @@
     
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/ffa8279fb3.js" crossorigin="anonymous"></script>
 <script src="./assets/script.js"></script>
 <script src="./assets/traitement.js"></script>
+
 </html>

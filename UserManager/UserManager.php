@@ -36,27 +36,8 @@ class UserManager
 
     return $retour;
 
-
+ 
        
-            
-        // } catch (\PDOException $e) {
-        //     var_dump($e);
-
-        // }
-        // while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            // var_dump("Hello2,5");
-            
-            
-            // $user = new User($row);
-            
-            // var_dump("Hello3");
-            // }
-
-            // if(isset($user)){
-            // var_dump("Hello4");
-   
-            // return $stmt->rowCount() == 1;
-            // }
 
     }
 
