@@ -3,14 +3,13 @@ namespace Task;
 
 class Task{
 
-    private $id_task;
-    private $nom_task;
-    private $description_task;
-    private $date_task;
-    private $priorite_task;
-    private $category_task;
-    private $id_user;
-    private $id_priority;
+    private $Id_Task;
+    private $Titre_Task;
+    private $Description_Task;
+    private $Date_Task;
+    private $Categorie_Task;
+    private $Id_User;
+    private $Id_Priority;
 
     function __construct(array $datas){ 
         foreach ($datas as $key => $value) {
@@ -25,7 +24,7 @@ class Task{
      */ 
     public function getId_task()
     {
-        return $this->id_task;
+        return $this->Id_Task;
     }
 
     /**
@@ -35,7 +34,7 @@ class Task{
      */ 
     public function setId_task($id_task)
     {
-        $this->id_task = $id_task;
+        $this->Id_Task = $id_task;
 
         return $this;
     }
@@ -43,9 +42,9 @@ class Task{
     /**
      * Get the value of nom_task
      */ 
-    public function getNom_task()
+    public function getTitre_task()
     {
-        return $this->nom_task;
+        return $this->Titre_Task;
     }
 
     /**
@@ -53,9 +52,9 @@ class Task{
      *
      * @return  self
      */ 
-    public function setNom_task($nom_task)
+    public function setTitre_task($titre_task)
     {
-        $this->nom_task = $nom_task;
+        $this->Titre_Task = $titre_task;
 
         return $this;
     }
@@ -65,7 +64,7 @@ class Task{
      */ 
     public function getDescription_task()
     {
-        return $this->description_task;
+        return $this->Description_Task;
     }
 
     /**
@@ -75,7 +74,7 @@ class Task{
      */ 
     public function setDescription_task($description_task)
     {
-        $this->description_task = $description_task;
+        $this->Description_Task = $description_task;
 
         return $this;
     }
@@ -85,7 +84,7 @@ class Task{
      */ 
     public function getDate_task()
     {
-        return $this->date_task;
+        return $this->Date_Task;
     }
 
     /**
@@ -95,7 +94,7 @@ class Task{
      */ 
     public function setDate_task($date_task)
     {
-        $this->date_task = $date_task;
+        $this->Date_Task = $date_task;
 
         return $this;
     }
@@ -103,31 +102,11 @@ class Task{
     
 
     /**
-     * Get the value of priorite_task
-     */ 
-    public function getPriorite_task()
-    {
-        return $this->priorite_task;
-    }
-
-    /**
-     * Set the value of priorite_task
-     *
-     * @return  self
-     */ 
-    public function setPriorite_task($priorite_task)
-    {
-        $this->priorite_task = $priorite_task;
-
-        return $this;
-    }
-
-    /**
      * Get the value of category_task
      */ 
     public function getCategory_task()
     {
-        return $this->category_task;
+        return $this->Categorie_Task;
     }
 
     /**
@@ -137,7 +116,7 @@ class Task{
      */ 
     public function setCategory_task($category_task)
     {
-        $this->category_task = $category_task;
+        $this->Categorie_Task = $category_task;
 
         return $this;
     }
@@ -147,7 +126,7 @@ class Task{
      */ 
     public function getId_user()
     {
-        return $this->id_user;
+        return $this->Id_User;
     }
 
     /**
@@ -157,7 +136,7 @@ class Task{
      */ 
     public function setId_user($id_user)
     {
-        $this->id_user = $id_user;
+        $this->Id_User = $id_user;
 
         return $this;
     }
@@ -167,7 +146,7 @@ class Task{
      */ 
     public function getId_priority()
     {
-        return $this->id_priority;
+        return $this->Id_Priority;
     }
 
     /**
@@ -177,8 +156,13 @@ class Task{
      */ 
     public function setId_priority($id_priority)
     {
-        $this->id_priority = $id_priority;
+        $this->Id_Priority = $id_priority;
 
         return $this;
     }
+
+
+
+
+
 }

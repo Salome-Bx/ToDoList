@@ -1,3 +1,25 @@
+
+<?php
+include("./autoload.php");
+
+use TaskManager\TaskManager;
+use DbConnexion\DbConnexion;
+
+
+$dbConnexion = new DbConnexion();
+$TaskManager = new TaskManager($dbConnexion);
+
+$tasks = $TaskManager->getAllTasks();
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +32,19 @@
     <title>To Do List</title>
 </head>
 <body class="font-sans relative">
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- HEADER -->
     <header class="header">
 
@@ -77,9 +112,42 @@
         
 
         <!-- CONTENEUR TACHES -->
-        
-            <div>
-                <div class="conteneurTache flex-col bg-white rounded shadow m-4 w-full lg:w-3/4 lg:max-w-lg flex mb-4">
+
+        <div class='flex-col w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
+            <?php
+
+            foreach ($tasks as $task) {
+                echo "
+            
+                <div class='conteneurTache flex-col bg-white rounded shadow m-4 w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
+                    <div class='bandeauCouleurPriority w-full bg-red-600 px-1 min-h-fit text-white top-0 flex justify-end'>
+                        <p class='w-fit text-sm align-middle'>" . $task->getCategory_task() . "</p>
+                        <button class='flex-no-shrink p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer '><i class='fa-solid fa-pencil'></i></button>
+                        <button class='flex-no-shrink p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer'><i class='fa-solid fa-trash-can'></i></button>
+
+                    </div>
+                    
+                    <div class='conteneurTexteTache p-3'>
+                        
+                        <p class='dateTache'>". $task->getDate_task() ."</p>
+                        <p class='titreTache w-full text-lg text-grey-darkest'>". $task->getTitre_task() . "</p>
+                        <p class='descriptionTache w-full text-sm text-grey-darkest'>". $task->getDescription_task() ."</p> 
+                    </div>
+                    <div class='btns flex justify-end p-1 mt-2'>
+                        <button class='flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>Terminé !</button>
+                        <button class='flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>A faire</button>
+                    </div>
+
+                    
+                </div>
+            
+            ";
+            }
+            ?>
+        </div>
+
+    
+                <!-- <div class="conteneurTache flex-col bg-white rounded shadow m-4 w-full lg:w-3/4 lg:max-w-lg flex mb-4">
                     <div class="bandeauCouleurPriority w-full bg-red-600 px-1 min-h-fit text-white top-0 flex justify-end">
                         <p class="w-fit text-sm align-middle">Catégorie</p>
                         <button class="flex-no-shrink p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer "><i class="fa-solid fa-pencil"></i></button>
@@ -94,14 +162,11 @@
                             <button class="flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs">A faire</button>
                         </div>
                     </div>
-                    
-                    
-                    
-                </div>
-                
-            </div>
-        
+                </div> -->
+           
     </div>
+        
+    
 
     
     <!-- MODAL CONNEXION -->

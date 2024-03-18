@@ -8,9 +8,16 @@ use UserManager\UserManager;
 
 
 
-if (isset($_POST)) {
 
+
+if (isset($_POST['Email_User_Connexion']) && isset($_POST['Mdp_User_Connexion'])
+&& !empty($_POST['Email_User_Connexion']) && !empty($_POST['Mdp_User_Connexion']) 
+{
+    // validate
+    $mail = htmlspecialchars($_POST['Mdp_User_Connexion']);
     
+
+
     $data = file_get_contents("php://input");
     $user = (json_decode($data, true));
 
@@ -18,8 +25,10 @@ if (isset($_POST)) {
     $dbConnexion = new DbConnexion();
     $userManager = new UserManager($dbConnexion);
 
+    
 
-var_dump($user["email"], $user["password"]);
+    var_dump($user["email"], $user["password"]);
+
     if ($userManager->login($user["email"], $user["password"])) {
        
         echo "success";

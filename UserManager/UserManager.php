@@ -21,10 +21,6 @@ class UserManager
     {
     
     $hash = hash("whirlpool",$mdp_user);
-
-
-        // try {
-        //     $stmt = $this->pdo->query("SELECT * FROM tdl_user WHERE Email_User = '$email_user' AND Mdp_User = '$hash' ");
         
     $sql = "SELECT * FROM tdl_user WHERE Email_User = :email AND Mdp_User = :mdp";
 
@@ -34,12 +30,42 @@ class UserManager
     $retour = $statement->execute();
     
 
-    return $retour;
-
- 
-       
+    return $retour; 
 
     }
+
+
+    public function insertUser(User $objet)
+        {
+
+            // Dans les paramètres on récupére un objet $objet 
+            // formaté par la classe Product
+            // Du coup on peut utiliser les getters
+            $prenom = $objet->getPrenom_user();
+            $nom = $objet->getNom_user();
+            $mdp = $objet->getMdp_user();
+            
+
+            try {
+                // Ici on requête 
+                // prepare sert a nettoyer la donnée avant insertion
+                // Attention d'avoir le bon nombre de champs dans la requête)
+                $stmt = $this->pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?,?)");
+
+                // Ici la requête est éxécutée après nettoiement, attention à avoir le même 
+                // ordre que dans votre bdd.
+                $stmt->execute([$name, $description, $price, $image, $id_category]);
+
+                // SI une ligne a été affectée par le  changement alors on renvoi true
+                // Cela permettra d'utiliser cette fonction avec un if dans le traitement
+                // If ( ca a fonctionné)
+                return $stmt->rowCount() == 1;
+            } catch (\PDOException $e) {
+                // erreur
+                var_dump($e);
+            }
+        }
+
 
 
 
