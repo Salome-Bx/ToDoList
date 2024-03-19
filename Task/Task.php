@@ -1,15 +1,17 @@
 <?php 
 namespace Task;
 
-class Task{
+class Task {
 
     private $Id_Task;
     private $Titre_Task;
     private $Description_Task;
     private $Date_Task;
-    private $Categorie_Task;
+    private $Id_Category;
     private $Id_User;
     private $Id_Priority;
+    private $Nom_Category;
+    private $Nom_Priority;
 
     function __construct(array $datas){ 
         foreach ($datas as $key => $value) {
@@ -101,25 +103,6 @@ class Task{
 
     
 
-    /**
-     * Get the value of category_task
-     */ 
-    public function getCategory_task()
-    {
-        return $this->Categorie_Task;
-    }
-
-    /**
-     * Set the value of category_task
-     *
-     * @return  self
-     */ 
-    public function setCategory_task($category_task)
-    {
-        $this->Categorie_Task = $category_task;
-
-        return $this;
-    }
 
     /**
      * Get the value of id_user
@@ -165,4 +148,58 @@ class Task{
 
 
 
+
+    /**
+     * Get the value of Nom_Category
+     */
+    public function getNomCategory()
+    {
+        return $this->Nom_Category;
+    }
+
+    /**
+     * Set the value of Nom_Category
+     */
+    public function setNomCategory($Nom_Category): self
+    {
+        $this->Nom_Category = $Nom_Category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Nom_Priority
+     */
+    public function getNomPriority()
+    {
+        return $this->Nom_Priority;
+    }
+
+    /**
+     * Set the value of Nom_Priority
+     */
+    public function setNomPriority($Nom_Priority): self
+    {
+        $this->Nom_Priority = $Nom_Priority;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Category
+     */
+    public function getIdCategory()
+    {
+        return $this->Id_Category;
+    }
+
+    /**
+     * Set the value of Id_Category
+     */
+    public function setIdCategory($Id_Category): self
+    {
+        $this->Id_Category = $Id_Category;
+
+        return $this;
+    }
 }

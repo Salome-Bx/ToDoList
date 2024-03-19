@@ -3,13 +3,21 @@
 include("./autoload.php");
 
 use TaskManager\TaskManager;
+use UserManager\UserManager;
+use PriorityManager\PriorityManager;
 use DbConnexion\DbConnexion;
 
 
 $dbConnexion = new DbConnexion();
 $TaskManager = new TaskManager($dbConnexion);
+$UserManager = new UserManager($dbConnexion);
+$PriorityManager = new PriorityManager($dbConnexion);
 
 $tasks = $TaskManager->getAllTasks();
+$priorities = $PriorityManager->allPriorities();
+session_start();
+
+
 
 
 
@@ -35,16 +43,6 @@ $tasks = $TaskManager->getAllTasks();
 
 
 
-
-
-
-
-
-
-
-
-
-
     <!-- HEADER -->
     <header class="header">
 
@@ -63,7 +61,7 @@ $tasks = $TaskManager->getAllTasks();
                 <div class="flex flex-col w-full">
 
                     <!-- titre tâches -->
-                    <input id="Titre_Task" name="Titre_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Titre de votre tâche">
+                    <input  id="Titre_Task" name="Titre_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Titre de votre tâche"  >
 
                     <!-- description -->
                     <input id="Description_Task" name="Description_Task"  class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker mt-5" placeholder="Description">
@@ -76,12 +74,24 @@ $tasks = $TaskManager->getAllTasks();
                             <input id="Date_Task" name="Date_Task" type="date" class="flex shadow appearance-none border rounded w-full py-2 mr-4 mt-5 text-grey-darker sm:text-sm">
 
                             <!-- priorités -->
-                            <select id="Id_Priority" name="Id_Priority" type="text" required class="flex capitalize block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 mt-5">
+
+                            <select id="Id_Priority" name="Id_Priority" type="text" required class="flex capitalize block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 mt-5">
+                                <option class="text-gray" value="Normal">Normal</option>
+                                <option class="text-gray" value="Important">Important</option>
+                                <option class="text-gray" value="Urgent">Urgent</option>
                             </select>
                         </div>
                         
+
+
+
+
+
+
+
                         <!-- catégories -->
                         <div class="flex-row w-1/2 pt-6 pl-5" id="Category">
+                        
                             
                             <div class="flex items-center">
                                 <input id="Famille_Category" name="Famille_Category" value="famille" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
@@ -106,7 +116,7 @@ $tasks = $TaskManager->getAllTasks();
                 </div>
 
                 <!-- bouton ajouter -->
-                <button id ="btnAjouterTaches"  class="flex-no-shrink w-fit p-2 mt-8 border-2 rounded hover:text-purple-500">Ajouter</button>
+                <input id ="btnAjouterTaches" name="btnAjouterTaches" value="Ajouter" onclick="addTask()" type="submit" class="flex-no-shrink w-fit p-2 mt-8 border-2 rounded hover:text-purple-500"/>
             </div>
         </div>
         
@@ -116,34 +126,31 @@ $tasks = $TaskManager->getAllTasks();
         <div class='flex-col w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
             <?php
 
-            foreach ($tasks as $task) {
-                echo "
+            foreach ($tasks as $task) { ?>
+                
             
                 <div class='conteneurTache flex-col bg-white rounded shadow m-4 w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
-                    <div class='bandeauCouleurPriority w-full bg-red-600 px-1 min-h-fit text-white top-0 flex justify-end'>
-                        <p class='w-fit text-sm align-middle'>" . $task->getCategory_task() . "</p>
-                        <button class='flex-no-shrink p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer '><i class='fa-solid fa-pencil'></i></button>
-                        <button class='flex-no-shrink p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer'><i class='fa-solid fa-trash-can'></i></button>
+                    <div class='bandeauCouleurPriority w-full <?php if ($task->getNomPriority() === 'Normal') { echo "bg-green-600"; } elseif ($task->getNomPriority() === 'Important') {echo "bg-orange-600"; } else {echo "bg-red-600";} ?>  px-1 min-h-fit text-w   hite top-0 flex justify-end'>
+                        <p class='w-fit text-sm text-white align-middle'><?= $task->getNomCategory() ?></p>
+                        <button class='flex-no-shrink text-white p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer '><i class='fa-solid fa-pencil'></i></button>
+                        <button class='flex-no-shrink text-white p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer'><i class='fa-solid fa-trash-can'></i></button>
 
                     </div>
                     
                     <div class='conteneurTexteTache p-3'>
                         
-                        <p class='dateTache'>". $task->getDate_task() ."</p>
-                        <p class='titreTache w-full text-lg text-grey-darkest'>". $task->getTitre_task() . "</p>
-                        <p class='descriptionTache w-full text-sm text-grey-darkest'>". $task->getDescription_task() ."</p> 
+                        <p class='dateTache'> <?= $task->getDate_task() ?></p>
+                        <p class='titreTache w-full text-lg text-grey-darkest'><?=  $task->getTitre_task()?> </p>
+                        <p class='descriptionTache w-full text-sm text-grey-darkest'> <?= $task->getDescription_task()?></p> 
                     </div>
                     <div class='btns flex justify-end p-1 mt-2'>
-                        <button class='flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>Terminé !</button>
-                        <button class='flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>A faire</button>
+                        <button  class='btnTermine flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>Terminé !</button>
+                        <button  class='btnAFaire flex-no-shrink p-1 ml-1 mr-1 border-2 w-fit rounded hover:text-purple-500 text-xs'>A faire</button>
                     </div>
 
                     
                 </div>
-            
-            ";
-            }
-            ?>
+                <?php } ?>
         </div>
 
     
@@ -274,7 +281,7 @@ $tasks = $TaskManager->getAllTasks();
                         </div>
 
                         <div>
-                            <button id="btnValidationInscription" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 ">S'inscrire</button>
+                            <input name="inputInscription" onclick="userInscription()" id="btnValidationInscription" type="submit" class=" flex w-full justify-center rounded-md bg-fuchsia-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 "/>
                         </div>
                     </div>
 

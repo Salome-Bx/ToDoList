@@ -35,7 +35,7 @@ class UserManager
     }
 
 
-    public function insertUser(User $objet)
+    public function  saveUser(User $objet)
         {
 
             // Dans les paramètres on récupére un objet $objet 
@@ -43,18 +43,20 @@ class UserManager
             // Du coup on peut utiliser les getters
             $prenom = $objet->getPrenom_user();
             $nom = $objet->getNom_user();
+            $email = $objet->getEmail_user();
             $mdp = $objet->getMdp_user();
+            
             
 
             try {
                 // Ici on requête 
                 // prepare sert a nettoyer la donnée avant insertion
                 // Attention d'avoir le bon nombre de champs dans la requête)
-                $stmt = $this->pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?,?)");
+                $stmt = $this->pdo->prepare("INSERT INTO tdl_user VALUES(NULL,?,?,?,?)");
 
                 // Ici la requête est éxécutée après nettoiement, attention à avoir le même 
                 // ordre que dans votre bdd.
-                $stmt->execute([$name, $description, $price, $image, $id_category]);
+                $stmt->execute([$nom, $prenom, $mdp, $email]);
 
                 // SI une ligne a été affectée par le  changement alors on renvoi true
                 // Cela permettra d'utiliser cette fonction avec un if dans le traitement

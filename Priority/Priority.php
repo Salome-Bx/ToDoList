@@ -4,8 +4,8 @@ namespace Priority;
 
 class Priority {
 
-    private $id_priority;
-    private $nom_priority;
+    private $Id_Priority;
+    private $Nom_Priority;
 
 
     function __construct(array $datas){
@@ -17,16 +17,12 @@ class Priority {
     }
 
 
-
-    
-
-
     /**
      * Get the value of id_priority
      */ 
     public function getId_priority()
     {
-        return $this->id_priority;
+        return $this->Id_Priority;
     }
 
     /**
@@ -36,7 +32,7 @@ class Priority {
      */ 
     public function setId_priority($id_priority)
     {
-        $this->id_priority = $id_priority;
+        $this->Id_Priority = $id_priority;
 
         return $this;
     }
@@ -46,7 +42,7 @@ class Priority {
      */ 
     public function getNom_priority()
     {
-        return $this->nom_priority;
+        return $this->Nom_Priority;
     }
 
     /**
@@ -56,7 +52,7 @@ class Priority {
      */ 
     public function setNom_priority($nom_priority)
     {
-        $this->nom_priority = $nom_priority;
+        $this->Nom_Priority = $nom_priority;
 
         return $this;
     }

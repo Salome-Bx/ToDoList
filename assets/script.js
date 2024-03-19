@@ -1,7 +1,7 @@
 
 //Récupération de tous les champs email et mdp
-let email_connexion = document.querySelector('#Email_User_Connexion').value;
-let mdp_connexion = document.querySelector('#Mdp_User_Connexion').value;
+// let email_connexion = document.querySelector('#Email_User_Connexion').value;
+// let mdp_connexion = document.querySelector('#Mdp_User_Connexion').value;
 
 let email_inscription = document.querySelector('#Email_User_Inscription').value;
 let mdp_inscription = document.querySelector('#Mdp_User_Inscription').value;
@@ -54,8 +54,12 @@ let btnValiderModificationInformations = document.querySelector("#btnValiderModi
 let btnCompteHeader = document.querySelector("#btnCompteHeader");
 
 
-
-
+// Récupération contenu tâche
+let descriptionTache = document.querySelector(".descriptionTache");
+let titreTache = document.querySelector(".titreTache");
+let dateTache = document.querySelector(".dateTache");
+let btnTermine = document.querySelector(".btnTermine");
+let btnAFaire = document.querySelector(".btnAFaire");
 
 
 // Gestion affichage modales
@@ -72,7 +76,19 @@ function blocAAfficherOuCacher(blocACacher, blocAAfficher) {
     blocAAfficher.classList.remove("hidden");
 }
 
+// Gestion tâche temrinée / à faire
 
+btnTermine.addEventListener("click", function () {
+    descriptionTache.classList.add("line-through");
+    titreTache.classList.add("line-through");
+    dateTache.classList.add("line-through");
+});
+
+btnAFaire.addEventListener("click", function () {
+    descriptionTache.classList.remove("line-through");
+    titreTache.classList.remove("line-through");
+    dateTache.classList.remove("line-through");
+});
 
 // Récupération identifiants connexion
 
@@ -80,6 +96,8 @@ function handleLoginConnexion() {
 
     let email_connexion = document.querySelector('#Email_User_Connexion').value;
     let mdp_connexion = document.querySelector('#Mdp_User_Connexion').value;
+
+
 
     let modalToDoList = document.querySelector("#modalToDoList");
     let modalConnexion = document.querySelector("#modalConnexion");
@@ -108,7 +126,82 @@ function handleLoginConnexion() {
 
 }
 
+// Récupération informations formulaire inscription
 
+function userInscription() {
+
+    let prenom_inscription = document.querySelector('#Prenom_User_Inscription').value;
+    let nom_inscription = document.querySelector('#Nom_User_Inscription').value;
+    let email_inscription = document.querySelector('#Email_User_Inscription').value;
+    let mdp_inscription = document.querySelector('#Mdp_User_Inscription').value;
+
+
+
+    let infosInscription = {
+        prenom_user: prenom_inscription,
+        nom_user: nom_inscription,
+        email_user: email_inscription,
+        mdp_user: mdp_inscription,
+        inputInscription: true
+
+
+    };
+
+    let params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(infosInscription),
+    };
+    console.log(infosInscription);
+
+    fetch("./traitement.php", params)
+        .then((res) => res.text())
+        .then((data) => console.log(data));
+
+
+
+}
+
+// Récupération infos tâche
+
+function addTask() {
+
+    let titre_task = document.querySelector("#Titre_Task").value;
+    let description_task = document.querySelector("#Description_Task").value;
+    let date_task = document.querySelector("#Date_Task").value;
+    let nom_priority = document.querySelector("#Id_Priority").value;
+    let nom_category = document.querySelector("#Category").value;
+
+
+    let btnAjouterTaches = {
+        Titre_Task: titre_task,
+        Description_Task: description_task,
+        Date_Task: date_task,
+        Nom_Priority: nom_priority,
+        Nom_Category: nom_category,
+        btnAjouterTaches: true
+
+
+    };
+
+    let params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(btnAjouterTaches),
+    };
+    console.log(btnAjouterTaches);
+
+    fetch("./traitement.php", params)
+        .then((res) => res.text())
+        .then((data) => console.log(data));
+
+
+
+}
 
 
 
