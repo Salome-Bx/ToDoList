@@ -108,6 +108,10 @@ function handleLoginConnexion() {
         password: mdp_connexion,
     };
 
+    if (email_connexion == "" || mdp_connexion == "") {
+        document.querySelector(".messageErreur").innerText = `Merci de mettre un numéro de téléphone valide.`;
+    };
+
     let params = {
         method: "POST",
         headers: {
@@ -118,14 +122,20 @@ function handleLoginConnexion() {
 
     fetch("./login.php", params)
         .then((res) => res.text())
-        .then((data) => console.log(data));
+        .then((data) => {
+            console.log(data);
+            if (data.status === "succes") {
+                modalConnexion.classList.add("hidden");
+                modalToDoList.classList.remove("hidden");
+                btnCompteHeader.classList.remove("hidden");
+            }
+            else if (data.status === "erreur") {
+                document.querySelector(".messageErreur").innerText = `Le mot de passe est erroné`;
+            };
 
-    modalConnexion.classList.add("hidden");
-    modalToDoList.classList.remove("hidden");
-    btnCompteHeader.classList.remove("hidden");
+        })
 
 }
-
 // Récupération informations formulaire inscription
 
 function userInscription() {
