@@ -28,13 +28,13 @@ class UserManager
         $retour = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-        return $retour;
+
 
 
         if ($retour) {
             $hashedPassword = $retour["Mdp_User"];
             if (password_verify($mdp_user, $hashedPassword)) {
-                session_start();
+
                 $_SESSION["userId"] = $retour['Id_User'];
                 echo json_encode(["status" => "succes", "message" => "Vous êtes connecté"]);
             } else {
