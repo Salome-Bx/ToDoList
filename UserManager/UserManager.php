@@ -28,13 +28,8 @@ class UserManager
         $retour = $statement->fetch(PDO::FETCH_ASSOC);
 
 
+        return $retour;
 
-
-        // return $retour;
-
-        var_dump($retour);
-        var_dump($retour["Mdp_User"]);
-        var_dump($mdp_user);
 
         if ($retour) {
             $hashedPassword = $retour["Mdp_User"];

@@ -123,7 +123,7 @@ function handleLoginConnexion() {
     fetch("./login.php", params)
         .then((res) => res.text())
         .then((data) => {
-            console.log(data);
+            console.log(data.status);
             if (data.status === "succes") {
                 modalConnexion.classList.add("hidden");
                 modalToDoList.classList.remove("hidden");
