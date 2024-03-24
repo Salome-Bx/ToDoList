@@ -1,10 +1,12 @@
 <?php
 
+
 namespace UserManager;
 
 use DbConnexion\DbConnexion;
 use PDO;
 use User\User;
+
 
 class UserManager
 {
@@ -21,29 +23,15 @@ class UserManager
 
     {
 
-        $sql = "SELECT * FROM `tdl_user` WHERE Email_User = :email";
+        $sql = "SELECT * FROM tdl_user WHERE Email_User = :email";
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute([':email' => $email_user]);
-        $retour = $statement->fetch(PDO::FETCH_ASSOC);
+        $response = $statement->fetch(PDO::FETCH_ASSOC);
 
-
-
-
-
-        if ($retour) {
-            $hashedPassword = $retour["Mdp_User"];
-            if (password_verify($mdp_user, $hashedPassword)) {
-
-                $_SESSION["userId"] = $retour['Id_User'];
-                echo json_encode(["status" => "succes", "message" => "Vous êtes connecté"]);
-            } else {
-                echo json_encode(["status" => "erreur", "message" => "Le mot de passe est erroné"]);
-            }
-        } else {
-            echo json_encode(["status" => "erreur", "message" => "Vous n'êtes pas enregistré"]);
-        }
+        return $response;
     }
+
 
 
     public function  saveUser(User $objet)
@@ -76,6 +64,20 @@ class UserManager
         } catch (\PDOException $e) {
             // erreur
             var_dump($e);
+        }
+    }
+
+
+    public function userExist(User $objet)
+    {
+        $sql = "SELECT * FROM tdl_user WHERE Email_User = :email";
+        $email = $objet->getEmail_user();
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([':email' => $email]);
+        if ($statement->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

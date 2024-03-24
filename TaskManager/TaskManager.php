@@ -2,6 +2,8 @@
 
 namespace TaskManager;
 
+
+
 use DbConnexion\DbConnexion;
 use Task\Task;
 use PDO;
@@ -31,10 +33,7 @@ class TaskManager
             // Le manager récupère l'instance de connexion pdo fournit par la classe DBConnexion
             // Il utilise cette instance de connexion et utilise la fonction query qui commme son nom l'indique
             // requête sur la bdd via notre instance de connexion
-            $stmt = $this->pdo->query("SELECT * FROM `tdl_task`  
-                INNER JOIN tdl_categorise ON tdl_task.Id_Task = tdl_categorise.Id_Task 
-                INNER JOIN tdl_category ON tdl_category.Id_Category = tdl_categorise.Id_Category
-                INNER JOIN tdl_priority ON tdl_priority.Id_Priority = tdl_task.Id_Priority");
+            $stmt = $this->pdo->query("SELECT tdl_task.*, GROUP_CONCAT(tdl_category.Nom_Category) AS Category_List, tdl_priority.Nom_Priority FROM tdl_task INNER JOIN tdl_categorise ON tdl_task.Id_Task = tdl_categorise.Id_Task INNER JOIN tdl_category ON tdl_category.Id_Category = tdl_categorise.Id_Category INNER JOIN tdl_priority ON tdl_priority.Id_Priority = tdl_task.Id_Priority GROUP BY tdl_task.Id_Task;");
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
@@ -60,23 +59,21 @@ class TaskManager
 
 
 
-    public function createTask(Task $objet)
+    public function createTask(task $objTask)
     {
 
-        // Dans les paramètres on récupére un objet $objet 
-        // formaté par la classe Product
-        // Du coup on peut utiliser les getters
-        $titre = $objet->getTitre_task();
-        $description = $objet->getDescription_task();
-        $date = $objet->getDate_task();
         $id_user = $_SESSION["userId"];
-        $id_priority = $objet->getId_priority();
+        $titre = $objTask->getTitre_task();
+        $description = $objTask->getDescription_task();
+        $date = $objTask->getDate_task();
+        $id_priority = $objTask->getId_priority();
+        $array_category = $objTask->getArray_Category();
 
         try {
             // Ici on requête 
             // prepare sert a nettoyer la donnée avant insertion
             // Attention d'avoir le bon nombre de champs dans la requête)
-            $stmt = $this->pdo->prepare("INSERT INTO tdl_task VALUES(?,?,?,?,?)");
+            $stmt = $this->pdo->prepare("INSERT INTO tdl_task VALUES(NULL,?,?,?,?,?)");
 
             // Ici la requête est éxécutée après nettoiement, attention à avoir le même 
             // ordre que dans votre bdd.
@@ -85,34 +82,24 @@ class TaskManager
             // SI une ligne a été affectée par le  changement alors on renvoi true
             // Cela permettra d'utiliser cette fonction avec un if dans le traitement
             // If ( ca a fonctionné)
+            $id_task = $this->pdo->lastInsertId();
+
+            if ($id_task) {
+                foreach ($array_category as $valeur) {
+                    try {
+                        $stmt = $this->pdo->prepare("INSERT INTO tdl_categorise VALUES(?,?)");
+                        $stmt->execute([$valeur, $id_task]);
+                    } catch (\PDOException $e) {
+                        // erreur
+                        var_dump($e);
+                    }
+                }
+            }
+
             return $stmt->rowCount() == 1;
         } catch (\PDOException $e) {
             // erreur
             var_dump($e);
         }
     }
-
-
-    //     public function createTask(Task $task): bool{
-    //     $sql = "INSERT INTO tdl_task (Id_Task, Titre_Task, Description_Task, Date_Task Priorite_Task, Categorie_Task, Id_User, Id_Priority) VALUES (:Id_Task, :Titre_Task, :Description_Task, :Date_Task :Priorite_Task, :Categorie_Task, :Id_User, :Id_Priority)";
-
-    //     $statement = $this->pdo->prepare($sql);
-
-    //     $retour = $statement->execute([
-    //       ':Id_Task' => $task->getId_task(),
-    //       ':Titre_Task' => $task->getTitre_task(),
-    //       ':Description_Task' => $task->getDescription_task(),
-    //       ':Date_Task' => $task->getDate_task(),
-    //       ':Priorite_Task' => $task->getId_priority(),
-    //       ':Categorie_Task' => $task->getIdCategory(),
-    //       ':Id_User' => $task->getId_user(),
-    //       ':Id_Priority' => $task->getId_priority()
-    //     ]);
-
-    //     return $retour;
-    //   }
-
-
-
-
 }

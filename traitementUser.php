@@ -15,7 +15,7 @@ use UserManager\UserManager;
 $data = file_get_contents("php://input");
 $user = (json_decode($data, true));
 
-$obj =  new user($user);
+$obj =  new User($user);
 
 
 $dbConnexion = new DbConnexion();
@@ -24,10 +24,14 @@ $userManager = new UserManager($dbConnexion);
 
 
 
-if ($userManager->saveUser($obj)) {
+if ($userManager->userExist($obj) !== true) {
+    $id_user = $userManager->saveUser($obj);
+    if ($id_user > 0) {
 
-    echo "save user : success";
+        echo json_encode(["status" => "succes", "message" => "Vous êtes inscrit", "id_user" => $id_user]);
+    } else {
+        echo json_encode(["status" => "erreur", "message" => "Erreur système"]);
+    }
 } else {
-
-    echo "save user : didn't work";
+    echo json_encode(["status" => "erreur", "message" => "Cet email est déja inscrit."]);
 }

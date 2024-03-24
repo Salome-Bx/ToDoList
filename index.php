@@ -14,7 +14,7 @@ $PriorityManager = new PriorityManager($dbConnexion);
 
 $tasks = $TaskManager->getAllTasks();
 $priorities = $PriorityManager->allPriorities();
-session_start();
+
 
 
 
@@ -54,7 +54,7 @@ session_start();
     </header>
 
     <!-- TO DO LIST -->
-    <div class="messageErreur"></div>
+    <div class="flex justify-center messageErreur text-white "></div>
     <div id="modalToDoList" class="h-100 w-full flex flex-wrap items-center justify-center font-sans hidden">
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
             <div class="mb-4 flex w-full flex-col justify-center items-center">
@@ -73,22 +73,16 @@ session_start();
                         <!-- conteneur date et priorités -->
                         <div class="w-1/2 flex-row items-center justify-center bg-teal-lightest font-sans p-2">
                             <!-- date -->
-                            <input id="Date_Task" name="Date_Task" type="date" class="flex shadow appearance-none border rounded w-full py-2 mr-4 mt-5 text-grey-darker sm:text-sm">
+                            <input id="Date_Task" name="Date_Task" type="date" class="flex indent-1 shadow appearance-none border rounded w-full py-2 mr-4 mt-5 text-grey-darker sm:text-sm">
 
                             <!-- priorités -->
 
-                            <select id="Id_Priority" name="Id_Priority" type="text" required class="flex capitalize block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 mt-5">
-                                <option class="text-gray" value="Normal">Normal</option>
-                                <option class="text-gray" value="Important">Important</option>
-                                <option class="text-gray" value="Urgent">Urgent</option>
+                            <select id="Id_Priority" name="Id_Priority" type="text" required class="flex indent-1 capitalize block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 mt-5">
+                                <option class="text-gray" value="1">Normal</option>
+                                <option class="text-gray" value="2">Important</option>
+                                <option class="text-gray" value="3">Urgent</option>
                             </select>
                         </div>
-
-
-
-
-
-
 
 
                         <!-- catégories -->
@@ -96,19 +90,19 @@ session_start();
 
 
                             <div class="flex items-center">
-                                <input id="Famille_Category" name="Famille_Category" value="famille" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <input id="Famille_Category" name="Famille_Category" value="3" type="checkbox" class="checkbox h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
                                 <label for="Famille_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Famille</label>
                             </div>
                             <div class="flex items-center">
-                                <input id="Amis_Category" name="Amis_Category" value="amis" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <input id="Amis_Category" name="Amis_Category" value="4" type="checkbox" class=" checkbox h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
                                 <label for="Amis_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Amis</label>
                             </div>
                             <div class="flex items-center">
-                                <input id="Travail_Category" name="Travail_Category" value="travail" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <input id="Travail_Category" name="Travail_Category" value="2" type="checkbox" class=" checkbox h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
                                 <label for="Travail_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Travail</label>
                             </div>
                             <div class="flex items-center">
-                                <input id="Personnel_Category" name="Personnel_Category" value="personnel" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
+                                <input id="Personnel_Category" name="Personnel_Category" value="1" type="checkbox" class="checkbox h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-fuchsia-500">
                                 <label for="Personnel_Category" class="ml-3 min-w-0 flex-1 text-gray-500">Personnel</label>
                             </div>
                         </div>
@@ -139,7 +133,7 @@ session_start();
                                                                 } else {
                                                                     echo "bg-red-600";
                                                                 } ?>  px-1 min-h-fit text-w   hite top-0 flex justify-end'>
-                        <p class='w-fit text-sm text-white align-middle'><?= $task->getNomCategory() ?></p>
+                        <p class='w-fit text-sm text-white align-middle'><?= $task->getCategory_List() ?></p>
                         <button class='flex-no-shrink text-white p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer '><i class='fa-solid fa-pencil'></i></button>
                         <button class='flex-no-shrink text-white p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer'><i class='fa-solid fa-trash-can'></i></button>
 

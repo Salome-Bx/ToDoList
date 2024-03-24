@@ -1,33 +1,33 @@
  <?php
-    include('autoload.php');
-    session_start();
+  include('autoload.php');
+  session_start();
 
-    use DbConnexion\DbConnexion;
-    use Task\Task;
-    use TaskManager\TaskManager;
-
-
-    //Récupération éléments tâches
-
-    $data = file_get_contents("php://input");
-    $task = (json_decode($data, true));
-
-    $objTask = new Task($task);
+  use DbConnexion\DbConnexion;
+  use Task\Task;
+  use TaskManager\TaskManager;
 
 
-    $dbConnexion = new DbConnexion();
-    $taskManager = new TaskManager($dbConnexion);
+  //Récupération éléments tâches
+
+  $data = file_get_contents("php://input");
+  $task = (json_decode($data, true));
+
+  $objTask = new Task($task);
+  var_dump($task);
+
+  $dbConnexion = new DbConnexion();
+  $taskManager = new TaskManager($dbConnexion);
+
+
+  if ($taskManager->createTask($objTask)) {
+    echo json_encode(["status" => "succes", "message" => "Tâche enregistré avec succés"]);
+  } else {
+
+    echo json_encode(["status" => "erreur", "message" => "La tâche n'a pas été enregistrée"]);
+  }
 
 
 
 
 
-    if ($taskManager->createTask($objTask)) {
-
-        echo "createTask : success";
-    } else {
-
-        echo "createTask : didn't work";
-    }
-
-    ?>
+  ?>
