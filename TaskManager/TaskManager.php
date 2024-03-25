@@ -62,8 +62,8 @@ class TaskManager
     public function createTask(task $objTask)
     {
 
-        $id_user = $_SESSION["userId"];
 
+        $id_user = $_SESSION["userId"];
         $titre = $objTask->getTitre_task();
         $description = $objTask->getDescription_task();
         $date = $objTask->getDate_task();
@@ -71,18 +71,13 @@ class TaskManager
         $array_category = $objTask->getArray_Category();
 
         try {
-            // Ici on requête 
-            // prepare sert a nettoyer la donnée avant insertion
-            // Attention d'avoir le bon nombre de champs dans la requête)
+
             $stmt = $this->pdo->prepare("INSERT INTO tdl_task VALUES(NULL,?,?,?,?,?)");
 
-            // Ici la requête est éxécutée après nettoiement, attention à avoir le même 
-            // ordre que dans votre bdd.
+
             $stmt->execute([$titre, $description, $date, $id_user, $id_priority]);
 
-            // SI une ligne a été affectée par le  changement alors on renvoi true
-            // Cela permettra d'utiliser cette fonction avec un if dans le traitement
-            // If ( ca a fonctionné)
+
             $id_task = $this->pdo->lastInsertId();
 
             if ($id_task) {
@@ -101,6 +96,20 @@ class TaskManager
         } catch (\PDOException $e) {
             // erreur
             var_dump($e);
+        }
+    }
+
+    public function deleteTask($id)
+    {
+
+        $stmt = $this->pdo->query("DELETE FROM tdl_categorise WHERE Id_Task = :id_task");
+        if ($stmt->execute([$id])); {
+            $statement = $this->pdo->query("DELETE FROM tdl_task WHERE Id_Task = :id_task ");
+            if ($statement->execute([$id])) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

@@ -29,8 +29,11 @@ Liste des fonctionnalités à réaliser :
     Modifier son mail, nom, prénom, mot de passe.
     Supprimer son compte.
 
+    
 
+Compte utilisateur : j.valjean@gmail.com / mdp : 123456
 
-
+Trello :  https://trello.com/b/JnOaW098/to-do-list
+Wireframe présent dans le dossier wireframe
 ​
 

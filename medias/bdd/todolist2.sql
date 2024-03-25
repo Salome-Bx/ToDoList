@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 23 mars 2024 à 10:47
+-- Généré le : lun. 25 mars 2024 à 14:24
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `tdl_categorise` (
 --
 
 INSERT INTO `tdl_categorise` (`Id_Category`, `Id_Task`) VALUES
-(1, 2);
+(1, 30),
+(2, 30);
 
 -- --------------------------------------------------------
 
@@ -104,15 +105,14 @@ CREATE TABLE IF NOT EXISTS `tdl_task` (
   PRIMARY KEY (`Id_Task`),
   KEY `Task_User_FK` (`Id_User`),
   KEY `Task_Priority0_FK` (`Id_Priority`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `tdl_task`
 --
 
 INSERT INTO `tdl_task` (`Id_Task`, `Titre_Task`, `Description_Task`, `Date_Task`, `Id_User`, `Id_Priority`) VALUES
-(2, 'Faire les des salto', 'Pensez à acheter du lait', '2024-03-21', 1, 1),
-(3, 'Faire du sport', '30 min cardio', '2024-03-20', 3, 1);
+(30, 'Finir ce brief', 'aussi vite que possible', '2024-03-26', 34, 3);
 
 -- --------------------------------------------------------
 
@@ -129,16 +129,14 @@ CREATE TABLE IF NOT EXISTS `tdl_user` (
   `Email_User` varchar(80) NOT NULL,
   PRIMARY KEY (`Id_User`),
   UNIQUE KEY `User_AK` (`Email_User`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `tdl_user`
 --
 
 INSERT INTO `tdl_user` (`Id_User`, `Nom_User`, `Prenom_User`, `Mdp_User`, `Email_User`) VALUES
-(1, 'Martin', 'Guillaume', '8723E1B97EFE514CD40A8EDE72A686CFC01D874DFEB61BFE57', 'g.martin@gmail.com'),
-(3, 'BEAU', 'Jean-Luc', '123456', 'jlbeau@gmail.com'),
-(25, 'Burteaux', 'Salomé', '$2y$10$7ZJQAy2q38X.lMfaBs27xe74QY8ltXErA86FYBtBz3dMwQWs5EeYS', 'salome.burteaux@gmail.com');
+(34, 'Valjean', 'Jean', '$2y$10$KrtoK1cCPHvjfZihgT5BtuWeFtXRW5ADyo6wFo.OpqbC/nmDm3ZpO', 'j.valjean@gmail.com');
 
 --
 -- Contraintes pour les tables déchargées

@@ -66,6 +66,8 @@ let dateTache = document.querySelector(".dateTache");
 let btnTermine = document.querySelector(".btnTermine");
 let btnAFaire = document.querySelector(".btnAFaire");
 
+
+
 // Gestion affichage modales
 
 btnValidationInscription.addEventListener("click", function () {
@@ -78,6 +80,9 @@ function blocAAfficherOuCacher(blocACacher, blocAAfficher) {
     blocACacher.classList.add("hidden");
     blocAAfficher.classList.remove("hidden");
 }
+
+
+
 
 // Gestion tâche terminée / à faire
 if (btnTermine) {
@@ -260,7 +265,7 @@ async function addTask() {
         },
         body: JSON.stringify(btnAjouterTaches),
     };
-    console.log(btnAjouterTaches);
+
     const url = `${webRoot}/traitementTask.php`;
     fetch(url, params)
         .then((res) => res.text())
@@ -280,4 +285,61 @@ async function addTask() {
                 console.error("Invalid data received from server:", data);
             }
         });
+
+
+
 }
+
+async function deleteTask(id) {
+
+    let recupIDTask = {
+        id: id,
+    };
+
+    let params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(recupIDTask),
+    };
+
+    const url = `${webRoot}/delete_task.php`;
+    fetch(url, params)
+        .then((res) => res.text())
+        .then((data) => {
+            console.log(data);
+            // let jsonData = JSON.parse(data);
+            // if (jsonData && jsonData.status) {
+            //     // Check status property while considering possible encoding differences
+            //     if (jsonData.status.trim().toLowerCase() === "succes") {
+            //         // Handle success
+
+            //     } else if (jsonData.status.trim().toLowerCase() === "erreur") {
+            //         // Handle error
+            //         document.querySelector(".messageErreur").innerText = jsonData.message;
+            //     }
+            // } else {
+            //     // Handle the case where data or data.status is not defined
+            //     console.error("Invalid data received from server:", data);
+            // }
+        });
+}
+
+
+function getMyTaskList() {
+
+    //une fonction qui récup ttes mes taches
+
+}
+
+
+
+
+
+
+
+
+
+
+

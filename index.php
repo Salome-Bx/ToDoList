@@ -7,13 +7,16 @@ use PriorityManager\PriorityManager;
 use DbConnexion\DbConnexion;
 
 
+
 $dbConnexion = new DbConnexion();
 $TaskManager = new TaskManager($dbConnexion);
 $UserManager = new UserManager($dbConnexion);
 $PriorityManager = new PriorityManager($dbConnexion);
 
+
 $tasks = $TaskManager->getAllTasks();
 $priorities = $PriorityManager->allPriorities();
+
 
 
 
@@ -121,7 +124,7 @@ $priorities = $PriorityManager->allPriorities();
 
         <div class='conteneurTaches flex-col w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
             <?php
-
+            // a mettre dans js
             foreach ($tasks as $task) { ?>
 
 
@@ -135,7 +138,7 @@ $priorities = $PriorityManager->allPriorities();
                                                                 } ?>  px-1 min-h-fit text-w   hite top-0 flex justify-end'>
                         <p class='w-fit text-sm text-white align-middle'><?= $task->getCategory_List() ?></p>
                         <button class='flex-no-shrink text-white p-1 ml-2 mr-1 border-1 w-fit text-sm rounded cursor-pointer '><i class='fa-solid fa-pencil'></i></button>
-                        <button class='flex-no-shrink text-white p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer'><i class='fa-solid fa-trash-can'></i></button>
+                        <button class='flex-no-shrink text-white p-1 ml-1 border-1 w-fit text-sm rounded cursor-pointer' onclick="deleteTask(<?= $task->getId_task() ?>)"><i class='fa-solid fa-trash-can'></i></button>
 
                     </div>
 

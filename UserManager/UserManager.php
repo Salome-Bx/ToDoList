@@ -37,9 +37,7 @@ class UserManager
     public function  saveUser(User $objet)
     {
 
-        // Dans les paramètres on récupére un objet $objet 
-        // formaté par la classe Product
-        // Du coup on peut utiliser les getters
+
         $prenom = $objet->getPrenom_user();
         $nom = $objet->getNom_user();
         $email = $objet->getEmail_user();
@@ -48,18 +46,13 @@ class UserManager
 
 
         try {
-            // Ici on requête 
-            // prepare sert a nettoyer la donnée avant insertion
-            // Attention d'avoir le bon nombre de champs dans la requête)
+
             $stmt = $this->pdo->prepare("INSERT INTO tdl_user VALUES(NULL,?,?,?,?)");
 
-            // Ici la requête est éxécutée après nettoiement, attention à avoir le même 
-            // ordre que dans votre bdd.
+
             $stmt->execute([$nom, $prenom, $mdp, $email]);
 
-            // SI une ligne a été affectée par le  changement alors on renvoi true
-            // Cela permettra d'utiliser cette fonction avec un if dans le traitement
-            // If ( ca a fonctionné)
+
             return $stmt->rowCount() == 1;
         } catch (\PDOException $e) {
             // erreur

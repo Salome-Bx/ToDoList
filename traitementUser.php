@@ -23,7 +23,7 @@ $userManager = new UserManager($dbConnexion);
 
 
 
-
+// vérifie si l'email utilisateur existe déjà en BD
 if ($userManager->userExist($obj) !== true) {
     $id_user = $userManager->saveUser($obj);
     if ($id_user > 0) {
