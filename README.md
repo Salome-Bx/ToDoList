@@ -1,5 +1,7 @@
 ----- Projet de création d'une ToDoList -----
 
+Projet réalisé en solo dans le cadre de ma formation developpeur web et webmobile à l'école Simplon.
+
 Contexte du projet
 
 L’objectif est de créer une application SPA (single page application), c’est à dire créer un site contenant une unique page qui ne sera pas rechargée lorsqu’une action y sera menée.
