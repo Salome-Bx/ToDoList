@@ -20,7 +20,7 @@
 
 
   if ($taskManager->createTask($objTask)) {
-    echo json_encode(["status" => "succes", "message" => "Tâche enregistré avec succés"]);
+    echo json_encode(["status" => "succes", "message" => "Tâche enregistrée avec succès"]);
   } else {
 
     echo json_encode(["status" => "erreur", "message" => "La tâche n'a pas été enregistrée"]);

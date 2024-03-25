@@ -1,4 +1,5 @@
 <?php
+
 namespace PriorityManager;
 
 use Priority\Priority;
@@ -27,17 +28,4 @@ class PriorityManager
         }
         return $priorities;
     }
-
-    // public function insertPriority(Priority $objet)
-    // {
-    //     $name = $objet->getNameCategory();
-    //     try {
-    //         $stmt = $this->pdo->prepare("INSERT INTO tdl_priority (name) VALUES (?)");
-    //         $stmt->execute([$name]);
-
-    //         return $stmt->rowCount() == 1;
-    //     } catch (\PDOException $e) {
-    //         return false;
-    //     }
-    // }
 }

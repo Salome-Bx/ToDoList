@@ -119,7 +119,7 @@ $priorities = $PriorityManager->allPriorities();
 
         <!-- CONTENEUR TACHES -->
 
-        <div class='flex-col w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
+        <div class='conteneurTaches flex-col w-full lg:w-3/4 lg:max-w-lg flex mb-4'>
             <?php
 
             foreach ($tasks as $task) { ?>
@@ -192,7 +192,7 @@ $priorities = $PriorityManager->allPriorities();
                     <div>
                         <label for="Email_User_Connexion" class="block text-sm font-medium leading-6 text-white">Email :</label>
                         <div class="mt-2">
-                            <input value="salome.burteaux@gmail.com" id="Email_User_Connexion" name="Email_User_Connexion" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
+                            <input value="j.valjean@gmail.com" id="Email_User_Connexion" name="Email_User_Connexion" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 emailInput">
                         </div>
                     </div>
 
@@ -202,7 +202,7 @@ $priorities = $PriorityManager->allPriorities();
 
                         </div>
                         <div class="mt-2">
-                            <input value="123" id="Mdp_User_Connexion" name="Mdp_User_Connexion" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
+                            <input value="123456" id="Mdp_User_Connexion" name="Mdp_User_Connexion" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6 indent-3 passwordInput">
                         </div>
                     </div>
 

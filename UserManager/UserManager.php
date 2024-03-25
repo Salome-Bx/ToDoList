@@ -19,12 +19,12 @@ class UserManager
         $this->pdo = $dbConnexion->getPDO();
     }
 
-    public function login(string $email_user, string $mdp_user)
+    public function login(string $email_user)
 
     {
 
         $sql = "SELECT * FROM tdl_user WHERE Email_User = :email";
-
+        //vérifie si email utilisateur correspond avec email en BD
         $statement = $this->pdo->prepare($sql);
         $statement->execute([':email' => $email_user]);
         $response = $statement->fetch(PDO::FETCH_ASSOC);

@@ -63,6 +63,7 @@ class TaskManager
     {
 
         $id_user = $_SESSION["userId"];
+
         $titre = $objTask->getTitre_task();
         $description = $objTask->getDescription_task();
         $date = $objTask->getDate_task();
